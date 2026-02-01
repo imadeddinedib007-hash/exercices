@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <cs50.h>
+int main(){
+int i,j,count=0;
+int sum1=0,sum2=0;
+long number = get_long("welcome to the credit card checker !\nplease enter your credit card number :");
+const long credit = number;
+while (number>0){
+    i=number%100;
+    j=i%10;
+    i=i/10;
+    i=i*2;
+    if (i>=10){
+        i=(i/10) + (i%10);
+    }
+    sum2 += (i + j);
+    number = number/100;
+}
+sum2 = sum2%10;
+if (sum2 != 0){
+    printf("INVALID\n");
+}
+else{
+number = credit;
+while (number >0){
+    number = number/10;
+    count++;
+}
+if (count ==15){
+number = credit;
+    while (number>=100){
+    number = number/10;
+}
+if (number == 34 || number ==37){
+    printf("AMERICAN EXPRESS\n");
+}
+}
+else if (count==13 || count==16){
+number = credit;
+if (count == 16){
+while (number>=100){
+    number = number/10;
+}
+if (number >=51 && number<=55 ){
+        printf("MASTERCARD\n");
+    }
+else if (number/10 == 4){
+    printf("VISA\n");
+}
+    else printf("INVALID\n");
+}
+else {
+number = credit;
+while (number>=10){
+    number = number/10;
+}
+if (number == 4){
+    printf("VISA\n");
+}
+}
+}
+else printf("INVALID\n");
+}
+return 0;
+}
